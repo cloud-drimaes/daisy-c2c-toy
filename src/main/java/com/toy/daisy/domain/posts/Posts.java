@@ -1,5 +1,6 @@
 package com.toy.daisy.domain.posts;
 
+import com.toy.daisy.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Getter // 클래스 내 모든 필드의 Getter 메소드 자동생성
 @NoArgsConstructor  // 기본 생성자 자동 추가. public Posts(){} 와 같은 효과
 @Entity
-public class Posts { // 실제 DB 테이블과 매칭될 클래스이다. Entity 클래스라고도 한다.
+public class Posts extends BaseTimeEntity { // 실제 DB 테이블과 매칭될 클래스이다. Entity 클래스라고도 한다.
                      // DB 데이터 작업 경우, 실제 쿼리를 날리지 않고 이 클래스의 수정을 통해 작업한다.
                      // 기본적으로 카멜케이스 이름을 언더스코어 네이밍으로 테이블명을 매칭한다. (MqttData.java -> mqtt_data table)
 
@@ -40,6 +41,12 @@ public class Posts { // 실제 DB 테이블과 매칭될 클래스이다. Entity
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 
 }
